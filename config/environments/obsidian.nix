@@ -49,6 +49,9 @@
     };
   };
 
+  # Needed for obsidian
+  config.opts.conceallevel = 2;
+
   config.keymaps = [
     { key = "<leader>od"; action = "<cmd>Obsidian dailies<CR>"; }
     { key = "<leader>on"; action = "<cmd>Obsidian new<CR>"; }

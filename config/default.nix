@@ -238,9 +238,6 @@
       # backupdir = "~/.config/nvim/backup";
       # directory = "~/.config/nvim/swap";
       # undodir = "~/.config/nvim/undo";
-
-      # Needed for obsidian
-      conceallevel = 2;
     };
 
     keymaps = [
