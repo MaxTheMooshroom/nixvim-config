@@ -9,11 +9,11 @@
     '';
   };
 
-  # Neovim seems to register <C-/> as <C-_>
+  # Neovim seems to register <c-/> as <c-_>
   config.keymaps = [
-    { mode = [ "n" ]; key = "<C-_>"; action = "<Plug>(comment_toggle_linewise_current)"; }
-    { mode = [ "v" ]; key = "<C-_>"; action = "<Plug>(comment_toggle_linewise_visual)";  }
-    { mode = [ "n" ]; key = "<C-/>"; action = "<Plug>(comment_toggle_linewise_current)"; }
-    { mode = [ "v" ]; key = "<C-/>"; action = "<Plug>(comment_toggle_linewise_visual)";  }
+    { mode = [ "n" ]; key = "<c-_>"; action = "<Plug>(comment_toggle_linewise_current)"; }
+    { mode = [ "v" ]; key = "<c-_>"; action = "<Plug>(comment_toggle_linewise_visual)";  }
+    { mode = [ "n" ]; key = "<c-/>"; action = "<Plug>(comment_toggle_linewise_current)"; }
+    { mode = [ "v" ]; key = "<c-/>"; action = "<Plug>(comment_toggle_linewise_visual)";  }
   ];
 }

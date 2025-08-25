@@ -18,6 +18,12 @@
       vtsls.enable = true;
       # denols.enable = true;
     };
+
+    package-info = {
+      enable = true;
+      enableTelescope = true;
+      settings.package_manager = "pnpm";
+    };
   };
 
   config.keymaps = [

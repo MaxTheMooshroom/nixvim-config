@@ -7,6 +7,8 @@
     settings = {
       legacy_commands = false;
 
+      ui.enable = false;
+
       completion = {
         min_chars = 2;
         #nvim_cmp = true;
@@ -37,13 +39,13 @@
         name = "telescope.nvim";
 
         note_mappings = {
-          insert_link = "<C-l>";
-          new = "<C-x>";
+          insert_link = "<c-l>";
+          new = "<c-x>";
         };
 
         tag_mappings = {
-          insert_tag = "<C-l>";
-          tag_note = "<C-x>";
+          insert_tag = "<c-l>";
+          tag_note = "<c-x>";
         };
       };
     };
@@ -102,7 +104,7 @@
               options = { buffer.__raw = "ev.buf"; expr = true; };
             }
 
-            { key = "<C-p>"; action = "<cmd>Obsidian search<CR>"; options.buffer.__raw = "ev.buf"; }
+            { key = "<c-p>"; action = "<cmd>Obsidian search<CR>"; options.buffer.__raw = "ev.buf"; }
 
             { key = "<leader>ob"; action = "<cmd>Obsidian backlinks<CR>"; options.buffer.__raw = "ev.buf"; }
             { key = "<leader>ox"; action = "<cmd>Obsidian extract_note<CR>"; options.buffer.__raw = "ev.buf"; }

@@ -52,6 +52,33 @@
       RainbowDelimiterViolet.fg = base17;
       RainbowDelimiterCyan.fg = base16;
 
+      RenderMarkdownCode.bg = base10;
+      # RenderMarkdownCodeBorder.fg = base01;
+      # RenderMarkdownCode
+      # RenderMarkdownCodeInfo
+      # RenderMarkdownCodeBorder
+      # RenderMarkdownCodeFallback
+      # RenderMarkdownCodeInline
+
+      RenderMarkdownH1Bg.bg = base10;
+      RenderMarkdownH1Bg.fg = base17;
+      RenderMarkdownH2Bg.bg = base10;
+      RenderMarkdownH2Bg.fg = base16;
+      RenderMarkdownH3Bg.bg = base00;
+      RenderMarkdownH3Bg.fg = base15;
+      RenderMarkdownH4Bg.bg = base00;
+      RenderMarkdownH4Bg.fg = base14;
+      RenderMarkdownH5Bg.bg = base00;
+      RenderMarkdownH5Bg.fg = base13;
+      RenderMarkdownH6Bg.bg = base00;
+      RenderMarkdownH6Bg.fg = base12;
+
+      RenderMarkdownH1.fg = base17;
+      RenderMarkdownH2.fg = base16;
+      RenderMarkdownH3.fg = base15;
+      RenderMarkdownH4.fg = base14;
+      RenderMarkdownH5.fg = base13;
+      RenderMarkdownH6.fg = base12;
     };
 
     plugins = with colorschemes.base16.colorscheme; {

@@ -1,30 +1,36 @@
 {
   imports = [
-    ./colorscheme.nix               # Configure personal colors
-    # ./barbar.nix                    # Tabbed buffers
-    ./blink.nix                     # Completions
-    ./bufferline.nix                # Tabbed buffers
-    ./ccc.nix                       # Color code slider with color highlights
-    # ./colorizer.nix                 # Color background highlights
-    ./comment.nix                   # Toggle comments
-    ./coverage.nix                  # Code coverage
-    ./dap.nix                       # Debug Adapter Protocol client
-    ./gitsigns.nix                  # Git status in the gutters
-    ./indent-blankline.nix          # Indentation guides
-    ./lspsaga.nix                   # LSP interface
-    ./neotest.nix                   # Framework for interacting with tests
-    ./neogit.nix                    # Interactive Git interface
-    ./noice.nix                     # Highly experimental plugin that completely
-                                    # replaces the UI for messages, cmdline and
-                                    # the popupmenu.
-    ./notify.nix                    # Puts notifications in a little UI bubble
-    ./persisted.nix                 # Session management
-    ./rainbow-delimiters.nix        # Colorize delimiters
-    # ./tabby.nix                     # Tabbed buffers
-    ./telescope.nix                 # Fuzzy finder, file browser, etc.
-    ./transparent.nix               # Make the editor transparent
-    ./treesitter.nix                # Use treesitter for handling syntax
-    ./trouble.nix                   # LSP diagnostics
+    ./colorscheme.nix                           # Configure personal colors
+    # ./barbar.nix                                # Tabbed buffers
+    ./blink.nix                                 # Completions
+    ./bufferline.nix                            # Tabbed buffers
+    ./bufdelete.nix                             # Buffer deletion without losing layout
+    ./ccc.nix                                   # Color code slider with color highlights
+    # ./colorizer.nix                             # Color background highlights
+    ./comment.nix                               # Toggle comments
+    ./coverage.nix                              # Code coverage
+    ./dap.nix                                   # Debug Adapter Protocol client
+    ./diagram.nix                               # Image diagrams
+    ./femaco.nix                                # Edit code blocks in a floating window
+    ./gitsigns.nix                              # Git status in the gutters
+    ./indent-blankline.nix                      # Indentation guides
+    ./lspsaga.nix                               # LSP interface
+    ./lualine.nix                               # Fancy statusline
+    ./neotest.nix                               # Framework for interacting with tests
+    ./neogit.nix                                # Interactive Git interface
+    ./noice.nix                                 # Highly experimental plugin that completely
+                                                # replaces the UI for messages, cmdline and
+                                                # the popupmenu.
+    ./notify.nix                                # Puts notifications in a little UI bubble
+    ./persisted.nix                             # Session management
+    # ./precognition.nix                          # Available motions as text and gutter signs
+    ./rainbow-delimiters.nix                    # Colorize delimiters
+    ./render-markdown.nix                       # Markdown in-editor rendering
+    # ./tabby.nix                                 # Tabbed buffers
+    ./telescope.nix                             # Fuzzy finder, file browser, etc.
+    ./transparent.nix                           # Make the editor transparent
+    ./treesitter.nix                            # Use treesitter for handling syntax
+    ./trouble.nix                               # LSP diagnostics
   ];
 
   config = {
@@ -32,23 +38,40 @@
     vimAlias = true;
 
     editorconfig.enable = true;
+    performance.byteCompileLua.enable = true;
 
     plugins = {
       # nix.enable = true;
 
-      direnv = {
-        enable = true;
-        autoLoad = true;
-      };
+      aw-watcher.enable = true;                 # ActivityWatch watcher integration -- slow tab switching
 
-      # dropbar.enable = true;          # Breadcrumbs
-      # lsp-lines.enable = true;        # LSP inline diagnostics
-      sqlite-lua.enable = true;       # SQLite viewer
-      # telekasten.enable = true;       # Markdown wiki plugin thing
-      # toggleterm.enable = true;       # Persist and toggle multiple terminals
-      twilight.enable = true;         # Dim regions that aren't being edited
-      visual-multi.enable = true;     # Multiple cursors
-      web-devicons.enable = true;     # Icons
+      bullets.enable = true;                    # Automated bullet lists
+      overseer.enable = true;                   # Task runner & job management
+
+      lsp-lines.enable = true;                  # LSP inline diagnostics
+      tiny-inline-diagnostic.enable = true;     # LSP inline diagnostics
+
+      # nvim-surround.enable = true;              # Modify surrounding delimiter pairs
+      nvim-autopairs.enable = true;             # Automatically insert symbol pairs
+
+      whitespace.enable = true;                 # Highlight and remove whitespace
+
+      todo-comments.enable = true;              # Todo comment highlights and search
+
+      direnv.enable = true;                     # Direnv integration
+
+      # dropbar.enable = true;                    # Breadcrumbs
+      sqlite-lua.enable = true;                 # SQLite viewer
+      # telekasten.enable = true;                 # Markdown wiki plugin thing
+      # toggleterm.enable = true;                 # Persist and toggle multiple terminals
+      # twilight.enable = true;                   # Dim regions that aren't being edited
+      visual-multi.enable = true;               # Multiple cursors
+
+      undotree.enable = true;                   # Undo history tree view
+      csvview.enable = true;                    # CSV file editing
+
+      web-devicons.enable = true;               # Icons
+      tiny-devicons-auto-colors.enable = true;  # Colorize devicons to match theme
 
       /*
         autosave = {
@@ -56,10 +79,10 @@
         };
       */
 
-      undotree.enable = true;
-
-      csvview = {
+      # Nerd Font gylph previews & search
+      nerdy = {
         enable = true;
+        enableTelescope = true;
       };
 
       # Library of 40+ independent lua modules
@@ -182,27 +205,6 @@
       #     ];
       #   };
       # };
-
-      # Fancy statusline
-      lualine = {
-        enable = true;
-
-        settings.sections = {
-          lualine_c = [
-            {
-              __unkeyed-1 = "filename";
-              path = 1;
-              newfile_status = true;
-            }
-          ];
-
-          lualine_x = [
-            "encoding"
-            "fileformat"
-            "filetype"
-          ];
-        };
-      };
     };
 
     globals.mapleader = " ";

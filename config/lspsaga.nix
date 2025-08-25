@@ -18,17 +18,19 @@
     ui.codeAction = " "; # 󰌵"; #󰌶󱠂";
 
     scrollPreview = {
-      scrollDown = "<C-j>";
-      scrollUp = "<C-k>";
+      scrollDown = "<c-j>";
+      scrollUp = "<c-k>";
     };
   };
 
   config.keymaps = [
-    { key = "gh";         action = "<cmd>Lspsaga lsp_finder<CR>";      mode = [ "n" ]; }
-    { key = "gr";         action = "<cmd>Lspsaga rename<CR>";          mode = [ "n" ]; }
-    { key = "gd";         action = "<cmd>Lspsaga peek_definition<CR>"; mode = [ "n" ]; }
-    { key = "<leader>ca"; action = "<cmd>Lspsaga code_action<CR>";                     }
-    { key = "<A-d>";      action = "<cmd>Lspsaga term_toggle<CR>";                     }
-    { key = "<A-d>";      action = "<cmd>Lspsaga term_toggle<CR>";     mode = [ "t" ]; }
+    { key = "gh";         action = "<cmd>Lspsaga lsp_finder<CR>";           mode = [ "n" ]; }
+    { key = "gr";         action = "<cmd>Lspsaga rename<CR>";               mode = [ "n" ]; }
+    { key = "gp";         action = "<cmd>Lspsaga peek_definition<CR>";      mode = [ "n" ]; }
+    { key = "gd";         action = "<cmd>Lspsaga goto_definition<CR>";      mode = [ "n" ]; }
+    { key = "gt";         action = "<cmd>Lspsaga goto_type_definition<CR>"; mode = [ "n" ]; }
+    { key = "<leader>ca"; action = "<cmd>Lspsaga code_action<CR>";                          }
+    { key = "<m-d>";      action = "<cmd>Lspsaga term_toggle<CR>";                          }
+    { key = "<m-d>";      action = "<cmd>Lspsaga term_toggle<CR>";          mode = [ "t" ]; }
   ];
 }

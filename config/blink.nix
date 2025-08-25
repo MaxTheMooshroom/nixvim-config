@@ -5,6 +5,7 @@
 
 {
   config.plugins = {
+    colorful-menu.enable = true;
     blink-cmp = {
       enable = true;
 
@@ -39,13 +40,29 @@
           documentation = {
             auto_show = true;
           };
+
+          menu.draw = {
+            columns = [ [ "kind_icon" ] { __unkeyed_1 = "label"; gap = 1; } ];
+            components.label = {
+              text = lib.nixvim.mkRaw ''
+                function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end
+              '';
+              highlight = lib.nixvim.mkRaw ''
+                function(ctx)
+                  return require("colorful-menu").blink_components_highlight(ctx)
+                end
+              '';
+            };
+          };
         };
 
         keymap = {
           preset = "super-tab";
 
-          "<A-k>" = [ "select_prev" "fallback" ];
-          "<A-j>" = [ "select_next" "fallback" ];
+          "<m-k>" = [ "select_prev" "fallback" ];
+          "<m-j>" = [ "select_next" "fallback" ];
         };
 
         signature = {
@@ -56,8 +73,8 @@
           cmdline = [];
           # cmdline.keymap = {
           #   preset = "cmdline";
-          #   "<A-k>" = [ "select_prev" "fallback" ];
-          #   "<A-j>" = [ "select_next" "fallback" ];
+          #   "<m-k>" = [ "select_prev" "fallback" ];
+          #   "<m-j>" = [ "select_next" "fallback" ];
           # };
           # term = {};
 
