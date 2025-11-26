@@ -13,7 +13,8 @@
       html.enable = true;
       cssls.enable = true;
       jsonls.enable = true;
-      eslint.enable = true;
+      # eslint.enable = true;
+      oxlint.enable = true;
       # ts_ls.enable = true;
       vtsls.enable = true;
       # denols.enable = true;
