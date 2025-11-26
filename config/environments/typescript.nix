@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   config.plugins = {
     # typescript-tools.enable = true;
 
@@ -26,7 +26,7 @@
     };
   };
 
-  config.keymaps = [
+  config.keymaps = lib.mkIf config.plugins.neotest.enable [
     {
       mode = ["n"];
       key = "<leader>twr";
