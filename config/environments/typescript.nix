@@ -1,12 +1,12 @@
-{
+{ config, ... }: {
   config.plugins = {
     # typescript-tools.enable = true;
 
     neotest.adapters = {
-      jest.enable = true;
-      # deno.enable = true;
-      vitest.enable = true;
-      # playwright.enable = true;
+      jest.enable = config.plugins.neotest.enable;
+      # deno.enable = config.plugins.neotest.enable;
+      vitest.enable = config.plugins.neotest.enable;
+      # playwright.enable = config.plugins.neotest.enable;
     };
 
     lsp.servers = {

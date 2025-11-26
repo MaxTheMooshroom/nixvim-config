@@ -1,7 +1,7 @@
-{
+{ config, ... }: {
   config.plugins = {
     dap-python.enable = true;
-    neotest.adapters.python.enable = true;
+    neotest.adapters.python.enable = config.plugins.neotest.enable;
 
     lsp.servers.pyright.enable = true;
     # lsp.servers.pylsp = {
