@@ -10,21 +10,24 @@
 
   config.plugins.coverage = {
     enable = true;
-    autoReload = true;
 
-    signs.covered = {
-      text = "┃";
-      priority = 130;
-    };
+    settings = {
+      auto_reload = true;
 
-    signs.partial = {
-      text = "┃";
-      priority = 120;
-    };
+      signs.covered = {
+        text = "┃";
+        priority = 130;
+      };
 
-    signs.uncovered = {
-      text = "┃";
-      priority = 120;
+      signs.partial = {
+        text = "┃";
+        priority = 120;
+      };
+
+      signs.uncovered = {
+        text = "┃";
+        priority = 120;
+      };
     };
   };
 }
