@@ -16,7 +16,7 @@
     ./indent-blankline.nix                      # Indentation guides
     ./lspsaga.nix                               # LSP interface
     ./lualine.nix                               # Fancy statusline
-    ./neotest.nix                               # Framework for interacting with tests
+    # ./neotest.nix                               # Framework for interacting with tests
     ./neogit.nix                                # Interactive Git interface
     ./noice.nix                                 # Highly experimental plugin that completely
                                                 # replaces the UI for messages, cmdline and

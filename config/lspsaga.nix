@@ -1,25 +1,23 @@
 {
-
   config.plugins.lsp.enable = true;
   config.plugins.lsp.servers.nil_ls.enable = true;
   # config.plugins.lsp.servers.nixd.enable = true;
+  config.plugins.lsp.servers.markdown_oxide.enable = true;
 
   config.plugins.lspsaga = {
     enable = true;
 
-    symbolInWinbar = {
-      enable = false;
-    };
+    settings = {
+      implement.enable = false;
+      symbol_in_winbar.enable = false;
+      lightbulb.sign = false;
 
-    lightbulb = {
-      sign = false;
-    };
+      ui.code_action = " "; # 󰌵"; #󰌶󱠂";
 
-    ui.codeAction = " "; # 󰌵"; #󰌶󱠂";
-
-    scrollPreview = {
-      scrollDown = "<c-j>";
-      scrollUp = "<c-k>";
+      scroll_preview = {
+        scroll_down = "<c-j>";
+        scroll_up = "<c-k>";
+      };
     };
   };
 
