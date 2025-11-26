@@ -1,6 +1,6 @@
 { config, lib, ... }: {
   config.plugins = {
-    # typescript-tools.enable = true;
+    typescript-tools.enable = true;
 
     neotest.adapters = {
       jest.enable = config.plugins.neotest.enable;
@@ -16,7 +16,7 @@
       # eslint.enable = true;
       oxlint.enable = true;
       # ts_ls.enable = true;
-      vtsls.enable = true;
+      # vtsls.enable = true;
       # denols.enable = true;
     };
 
