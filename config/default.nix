@@ -210,6 +210,10 @@
 
     globals.mapleader = " ";
 
+    # Always use clipboard
+    clipboard.register = "unnamedplus";
+    # globals.clipboard = "tmux";
+
     opts = {
       # Mouse support
       mouse = "a";
@@ -229,9 +233,6 @@
 
       # Spellcheck
       spelllang = "en_us";
-
-      # Use X clipboard
-      clipboard = "unnamedplus";
 
       # Some defaults
       tabstop = 2;
