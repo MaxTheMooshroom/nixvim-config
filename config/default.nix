@@ -43,7 +43,7 @@
     plugins = {
       # nix.enable = true;
 
-      aw-watcher.enable = true;                 # ActivityWatch watcher integration -- slow tab switching
+      # aw-watcher.enable = true;                 # activitywatch watcher integration -- disabled due to slow tab switching
 
       bullets.enable = true;                    # Automated bullet lists
       overseer.enable = true;                   # Task runner & job management
