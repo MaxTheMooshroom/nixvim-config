@@ -3,6 +3,8 @@
 
   inputs = {
     devenv.url = "github:cachix/devenv";
+    devenv.inputs.nixpkgs.follows = "";
+    devenv.inputs.flake-parts.follows = "";
     nix2container.url = "github:nlewo/nix2container";
     # See https://github.com/ursi/get-flake/issues/4
     nix2container.inputs.nixpkgs.follows = "";
