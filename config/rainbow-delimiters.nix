@@ -1,7 +1,7 @@
 {
   config.plugins.rainbow-delimiters = {
     enable = true;
-    highlight = [
+    settings.highlight = [
       "RainbowDelimiterRed"
       "RainbowDelimiterYellow"
       "RainbowDelimiterBlue"
