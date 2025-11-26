@@ -31,6 +31,8 @@
       "<leader>fg" = "live_grep";
       "<leader>fb" = "buffers";
       "<leader>fh" = "help_tags";
+      "<leader>fc" = "commands";
+      "<leader>fk" = "keymaps";
       "<leader>sf" = "persisted";
       "<leader>fs" = "persisted";
     };
