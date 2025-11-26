@@ -45,6 +45,7 @@
 
       # aw-watcher.enable = true;                 # activitywatch watcher integration -- disabled due to slow tab switching
 
+      neoconf.enable = true;                    # Global and project-local settings management
       bullets.enable = true;                    # Automated bullet lists
       overseer.enable = true;                   # Task runner & job management
 
