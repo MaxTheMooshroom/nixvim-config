@@ -3,6 +3,7 @@
     # move line up one with alt + up-arrow
     {  mode = [ "n" "i" ];  key = "<m-Up>";    action = ":m .-2<CR>";     }
     {  mode = [ "v" ];      key = "<m-Up>";    action = ":m '<-2<CR>gv";  }
+
     # move line down one with alt + down-arrow
     {  mode = [ "n" "i" ];  key = "<m-Down>";  action = ":m .+1<CR>";     }
     {  mode = [ "v" ];      key = "<m-Down>";  action = ":m '>+1<CR>gv";  }

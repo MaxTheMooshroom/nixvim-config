@@ -226,7 +226,7 @@
 
       # Line Numbers
       number = true;
-      relativenumber = true;
+      relativenumber = false;
 
       # Spellcheck
       spelllang = "en_us";
