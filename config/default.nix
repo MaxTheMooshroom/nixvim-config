@@ -18,9 +18,6 @@
     ./lualine.nix                               # Fancy statusline
     # ./neotest.nix                               # Framework for interacting with tests
     ./neogit.nix                                # Interactive Git interface
-    ./noice.nix                                 # Highly experimental plugin that completely
-                                                # replaces the UI for messages, cmdline and
-                                                # the popupmenu.
     ./notify.nix                                # Puts notifications in a little UI bubble
     ./persisted.nix                             # Session management
     # ./precognition.nix                          # Available motions as text and gutter signs

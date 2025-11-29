@@ -8,7 +8,10 @@
     };
 
     nixpkgs.follows = "nixvim/nixpkgs";
+    # nixpkgs.url = "github:NixOS/nixpkgs/25.05";
     nixvim.url = "github:nix-community/nixvim";
+    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.flake-parts.follows = "flake-parts";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixvim/nixpkgs";
   };
@@ -27,6 +30,7 @@
 
           nixvimModules = {
             default = ./config;
+            userPrefs = ./config/users/maxine.nix;
             typescript = ./config/environments/typescript.nix;
             python = ./config/environments/python.nix;
             rust = ./config/environments/rust.nix;
@@ -46,6 +50,7 @@
               options // {
                 modules = modules ++ [
                   nixvimModules.default
+                  nixvimModules.userPrefs
                   nixvimModules.typescript
                   nixvimModules.python
                   nixvimModules.rust
