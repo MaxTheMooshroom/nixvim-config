@@ -1,5 +1,5 @@
 {
-  description = "*Kim's Neovim configuration flake";
+  description = "Maxine's Neovim configuration flake";
 
   inputs = {
     devenv-root = {

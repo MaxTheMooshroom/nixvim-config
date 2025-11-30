@@ -69,7 +69,7 @@
       csvview.enable = true;                    # CSV file editing
 
       web-devicons.enable = true;               # Icons
-      tiny-devicons-auto-colors.enable = true;  # Colorize devicons to match theme
+      tiny-devicons-auto-colors.enable = false; # Colorize devicons to match theme
 
       /*
         autosave = {
