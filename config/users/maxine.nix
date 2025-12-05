@@ -41,8 +41,11 @@
       "<S-Tab>" = "<<";
       "<Tab>"   = ">>";
 
-      "<m-Up>"   = ":m .-2<CR>";
-      "<m-Down>" = ":m .+1<CR>";
+      "<C-S-Up>"    = ":m .-2<CR>";
+      "<C-S-Down>"  = ":m .+1<CR>";
+
+      "<m-Up>"    = "<C-y>";
+      "<m-Down>"  = "<C-e>";
 
       "<S-Up>"    = "Vk";
       "<S-Down>"  = "Vj";
@@ -51,16 +54,23 @@
     }
   ) ++ (
     inMode "i" {
-      "<m-Up>"   = "<Esc>:m .-2<CR>i";
-      "<m-Down>" = "<Esc>:m .+1<CR>i";
+      "<C-S-Up>"    = "<C-o><C-S-Up>";
+      "<C-S-Down>"  = "<C-o><C-S-Down>";
+
+      "<m-Up>"    = "<C-o><C-y>";
+      "<m-Down>"  = "<C-o><C-e>";
+
       "<C-c>"    = "<Esc>";
       "<S-Tab>"  = "<Esc><<i";
     }
   ) ++ (
     inMode "v" {
+      "<C-S-Up>"    = ":m '<-2<CR>gv";
+      "<C-S-Down>"  = ":m '>+1<CR>gv";
+
+      "<m-Up>"    = "<C-o><C-y>";
+      "<m-Down>"  = "<C-o><C-e>";
       "<C-c>"     = "<Esc>";
-      "<m-Up>"    = ":m '<-2<CR>gv";
-      "<m-Down>"  = ":m '>+1<CR>gv";
       "<S-Tab>"   = "<gv";
       "<Tab>"     = ">gv";
       "<S-Up>"    = "k";
