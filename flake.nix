@@ -7,13 +7,23 @@
       flake = false;
     };
 
-    nixpkgs.follows = "nixvim/nixpkgs";
-    # nixpkgs.url = "github:NixOS/nixpkgs/25.05";
     nixvim.url = "github:nix-community/nixvim";
-    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixvim/nixpkgs";
+
+    nixpkgs.follows = "nixvim/nixpkgs";
+
+    flake-module.url = ./flake-module.nix;
+    flake-module.flake = false;
+
+    partitions.url = ./partitions.nix;
+    partitions.flake = false;
+
+    nixvim-modules.url = ./config;
+    nixvim-modules.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim-modules.inputs.flake-parts.follows = "flake-parts";
   };
 
   nixConfig = {
@@ -21,136 +31,32 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; }
-      ({ withSystem, flake-parts-lib, ... }:
-        let
-          inherit (flake-parts-lib) importApply;
+  outputs = { self, flake-parts, nixvim-modules, nixvim, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      let
+        importApply = inputs.nixpkgs.lib.flip flake-parts.lib.importApply {
+          inputs = { inherit nixvim-modules nixvim; };
+        };
 
-          nixvimModules = {
-            default = ./config;
-            userPrefs = ./config/users/maxine.nix;
-            typescript = ./config/environments/typescript.nix;
-            python = ./config/environments/python.nix;
-            rust = ./config/environments/rust.nix;
-            docker = ./config/environments/docker.nix;
-            godot = ./config/environments/godot.nix;
-            obsidian = ./config/environments/obsidian.nix;
-          };
+      in {
+        imports = [
+          (importApply inputs.flake-module)
 
-          flakeModules.default = importApply ./flake-module.nix {
-            inherit withSystem;
-            inherit nixvimModules;
-            inputs.nixvim = inputs.nixvim;
-          };
+          (importApply inputs.partitions)
+        ];
 
-          nixvimConfig = options@{ system, modules ? [], ... }:
-            inputs.nixvim.lib.evalNixvim (
-              options // {
-                modules = modules ++ [
-                  nixvimModules.default
-                  nixvimModules.userPrefs
-                  nixvimModules.typescript
-                  nixvimModules.python
-                  nixvimModules.rust
-                  nixvimModules.docker
-                  nixvimModules.godot
-                ];
-              }
-            );
+        systems = inputs.nixpkgs.lib.systems.flakeExposed;
+        # systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-        in
+        nixvimUser = "maxine";
 
-        {
-          imports = [
-            flakeModules.default
-            inputs.flake-parts.flakeModules.partitions
-          ];
-
-          # systems = inputs.nixpkgs.lib.systems.flakeExposed;
-          systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
-
-          perSystem = { config, self', inputs', pkgs, system, ... }: {
-            # Per-system attributes can be defined here. The self' and inputs'
-            # module parameters provide easy access to attributes of the same
-            # system.
-
-            nixvimConfigurations = {
-              default = nixvimConfig {
-                inherit system;
-              };
-            };
-
-            packages = {
-              default = self'.packages.nvim;
-              nvimpager = pkgs.nvimpager.override {
-                neovim = self'.packages.nvim;
-              };
-            };
-          };
-
-          flake = {
-            # The usual flake attributes can be defined here, including system-
-            # agnostic ones like nixosModule and system-enumerating ones, although
-            # those are more easily expressed in perSystem.
-
-            inherit flakeModules;
-            inherit nixvimModules;
-
-            lib = {
-              nixvimConfig = nixvimConfig;
-            };
-          };
-
-          partitionedAttrs = {
-            devShells = "dev";
-            #templates = "dev";
-          };
-
-          partitions.dev = {
-            extraInputsFlake = ./dev;
-
-            module = { inputs, ... }: {
-              imports = [ inputs.devenv.flakeModule ];
-
-              perSystem = { config, self', inputs', pkgs, system, ... }: {
-                devenv.shells.default = {
-                  name = "nixvim-config";
-
-                  # https://devenv.sh/reference/options/
-                  packages = [
-                    config.packages.default
-                  ];
-
-                  languages.nix.enable = true;
-
-                  git-hooks.hooks = {
-                    commitizen.enable = true;
-
-                    markdownlint = {
-                      enable = true;
-                      settings.configuration = {
-                        MD013.line_length = 120;
-                      };
-                    };
-
-                    nil.enable = true;
-                  };
-                };
-              };
-
-#              flake.templates = inputs.haumea.lib.load {
-#                src = ./templates;
-#                loader = [({ matches = _: false; })];
-#
-#                transformer = cursor: mod:
-#                  if builtins.length cursor > 0 then
-#                    ./. + "/${builtins.head cursor}"
-#                  else
-#                    mod;
-#              };
-            };
-          };
-        }
-      );
+        nixvimEnvironments = [
+          "typescript"
+          "python"
+          "rust"
+          "docker"
+          "godot"
+        ];
+      }
+    );
 }

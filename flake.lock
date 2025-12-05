@@ -1,5 +1,131 @@
 {
   "nodes": {
+    "blink": {
+      "flake": false,
+      "locked": {
+        "path": "blink.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "blink.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "bufdelete": {
+      "flake": false,
+      "locked": {
+        "path": "bufdelete.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "bufdelete.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "bufferline": {
+      "flake": false,
+      "locked": {
+        "path": "bufferline.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "bufferline.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "ccc": {
+      "flake": false,
+      "locked": {
+        "path": "ccc.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "ccc.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "colorscheme": {
+      "flake": false,
+      "locked": {
+        "path": "colorscheme.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "colorscheme.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "comment": {
+      "flake": false,
+      "locked": {
+        "path": "comment.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "comment.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "coverage": {
+      "flake": false,
+      "locked": {
+        "path": "coverage.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "coverage.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "dap": {
+      "flake": false,
+      "locked": {
+        "path": "dap.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "dap.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "default": {
+      "flake": false,
+      "locked": {
+        "path": "default.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "default.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
     "devenv-root": {
       "flake": false,
       "locked": {
@@ -11,6 +137,86 @@
         "type": "file",
         "url": "file:///dev/null"
       }
+    },
+    "diagram": {
+      "flake": false,
+      "locked": {
+        "path": "diagram.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "diagram.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "docker": {
+      "flake": false,
+      "locked": {
+        "path": "docker.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "docker.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "environments"
+      ]
+    },
+    "environments": {
+      "inputs": {
+        "docker": "docker",
+        "flake-parts": [
+          "nixvim-modules",
+          "flake-parts"
+        ],
+        "godot": "godot",
+        "obsidian": "obsidian",
+        "python": "python",
+        "rust": "rust",
+        "typescript": "typescript"
+      },
+      "locked": {
+        "path": "environments",
+        "type": "path"
+      },
+      "original": {
+        "path": "environments",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "femaco": {
+      "flake": false,
+      "locked": {
+        "path": "femaco.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "femaco.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "flake-module": {
+      "flake": false,
+      "locked": {
+        "path": "flake-module.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "flake-module.nix",
+        "type": "path"
+      },
+      "parent": []
     },
     "flake-parts": {
       "inputs": {
@@ -33,59 +239,113 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems"
-      },
+    "gitsigns": {
+      "flake": false,
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
+        "path": "gitsigns.nix",
+        "type": "path"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
+        "path": "gitsigns.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
     },
-    "ixx": {
-      "inputs": {
-        "flake-utils": [
-          "nixvim",
-          "nuschtosSearch",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixvim",
-          "nuschtosSearch",
-          "nixpkgs"
-        ]
-      },
+    "godot": {
+      "flake": false,
       "locked": {
-        "lastModified": 1754860581,
-        "narHash": "sha256-EM0IE63OHxXCOpDHXaTyHIOk2cNvMCGPqLt/IdtVxgk=",
-        "owner": "NuschtOS",
-        "repo": "ixx",
-        "rev": "babfe85a876162c4acc9ab6fb4483df88fa1f281",
-        "type": "github"
+        "path": "godot.nix",
+        "type": "path"
       },
       "original": {
-        "owner": "NuschtOS",
-        "ref": "v0.1.1",
-        "repo": "ixx",
-        "type": "github"
-      }
+        "path": "godot.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "environments"
+      ]
+    },
+    "indent-blankline": {
+      "flake": false,
+      "locked": {
+        "path": "indent-blankline.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "indent-blankline.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "lspsaga": {
+      "flake": false,
+      "locked": {
+        "path": "lspsaga.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "lspsaga.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "lualine": {
+      "flake": false,
+      "locked": {
+        "path": "lualine.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "lualine.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "maxine": {
+      "flake": false,
+      "locked": {
+        "path": "maxine.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "maxine.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "user-preferences"
+      ]
+    },
+    "neogit": {
+      "flake": false,
+      "locked": {
+        "path": "neogit.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "neogit.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1764794580,
-        "narHash": "sha256-UMVihg0OQ980YqmOAPz+zkuCEb9hpE5Xj2v+ZGNjQ+M=",
+        "lastModified": 1764856222,
+        "narHash": "sha256-yEJmtoFu4cJre1NuU4fb8q57Oux+NTbocnALtJ64aEI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ebc94f855ef25347c314258c10393a92794e7ab9",
+        "rev": "ece6e266caf1effab32eceef0403b797b4330373",
         "type": "github"
       },
       "original": {
@@ -101,15 +361,14 @@
           "flake-parts"
         ],
         "nixpkgs": "nixpkgs",
-        "nuschtosSearch": "nuschtosSearch",
-        "systems": "systems_2"
+        "systems": "systems"
       },
       "locked": {
-        "lastModified": 1764892502,
-        "narHash": "sha256-xMDuLmD77k1ZoGjTPA/BELJEGNPDOR1ise6KltYOLtk=",
+        "lastModified": 1764942275,
+        "narHash": "sha256-ilPl/NCTxabL4kL+hpK6slcTdrqfr0KfyFrRjQt+sps=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "8e85c25143e5bc625197b96a0265cd6cec3634fc",
+        "rev": "812d7e639d0be7b0ed5aa50990ce0028a43215c8",
         "type": "github"
       },
       "original": {
@@ -118,39 +377,177 @@
         "type": "github"
       }
     },
-    "nuschtosSearch": {
+    "nixvim-modules": {
       "inputs": {
-        "flake-utils": "flake-utils",
-        "ixx": "ixx",
+        "blink": "blink",
+        "bufdelete": "bufdelete",
+        "bufferline": "bufferline",
+        "ccc": "ccc",
+        "colorscheme": "colorscheme",
+        "comment": "comment",
+        "coverage": "coverage",
+        "dap": "dap",
+        "default": "default",
+        "diagram": "diagram",
+        "environments": "environments",
+        "femaco": "femaco",
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "gitsigns": "gitsigns",
+        "indent-blankline": "indent-blankline",
+        "lspsaga": "lspsaga",
+        "lualine": "lualine",
+        "neogit": "neogit",
         "nixpkgs": [
-          "nixvim",
           "nixpkgs"
-        ]
+        ],
+        "notify": "notify",
+        "persisted": "persisted",
+        "rainbow-delimiters": "rainbow-delimiters",
+        "render-markdown": "render-markdown",
+        "telescope": "telescope",
+        "transparent": "transparent",
+        "treesitter": "treesitter",
+        "trouble": "trouble",
+        "user-preferences": "user-preferences"
       },
       "locked": {
-        "lastModified": 1761730856,
-        "narHash": "sha256-t1i5p/vSWwueZSC0Z2BImxx3BjoUDNKyC2mk24krcMY=",
-        "owner": "NuschtOS",
-        "repo": "search",
-        "rev": "e29de6db0cb3182e9aee75a3b1fd1919d995d85b",
-        "type": "github"
+        "path": "config",
+        "type": "path"
       },
       "original": {
-        "owner": "NuschtOS",
-        "repo": "search",
-        "type": "github"
-      }
+        "path": "config",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "notify": {
+      "flake": false,
+      "locked": {
+        "path": "notify.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "notify.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "obsidian": {
+      "flake": false,
+      "locked": {
+        "path": "obsidian.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "obsidian.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "environments"
+      ]
+    },
+    "partitions": {
+      "flake": false,
+      "locked": {
+        "path": "partitions.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "partitions.nix",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "persisted": {
+      "flake": false,
+      "locked": {
+        "path": "persisted.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "persisted.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "python": {
+      "flake": false,
+      "locked": {
+        "path": "python.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "python.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "environments"
+      ]
+    },
+    "rainbow-delimiters": {
+      "flake": false,
+      "locked": {
+        "path": "rainbow-delimiters.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "rainbow-delimiters.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "render-markdown": {
+      "flake": false,
+      "locked": {
+        "path": "render-markdown.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "render-markdown.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
     },
     "root": {
       "inputs": {
         "devenv-root": "devenv-root",
+        "flake-module": "flake-module",
         "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixvim",
           "nixpkgs"
         ],
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "nixvim-modules": "nixvim-modules",
+        "partitions": "partitions"
       }
+    },
+    "rust": {
+      "flake": false,
+      "locked": {
+        "path": "rust.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "rust.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "environments"
+      ]
     },
     "systems": {
       "locked": {
@@ -167,20 +564,96 @@
         "type": "github"
       }
     },
-    "systems_2": {
+    "telescope": {
+      "flake": false,
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
+        "path": "telescope.nix",
+        "type": "path"
       },
       "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
+        "path": "telescope.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "transparent": {
+      "flake": false,
+      "locked": {
+        "path": "transparent.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "transparent.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "treesitter": {
+      "flake": false,
+      "locked": {
+        "path": "treesitter.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "treesitter.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "trouble": {
+      "flake": false,
+      "locked": {
+        "path": "trouble.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "trouble.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
+    },
+    "typescript": {
+      "flake": false,
+      "locked": {
+        "path": "typescript.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "typescript.nix",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules",
+        "environments"
+      ]
+    },
+    "user-preferences": {
+      "inputs": {
+        "flake-parts": [
+          "nixvim-modules",
+          "flake-parts"
+        ],
+        "maxine": "maxine"
+      },
+      "locked": {
+        "path": "users",
+        "type": "path"
+      },
+      "original": {
+        "path": "users",
+        "type": "path"
+      },
+      "parent": [
+        "nixvim-modules"
+      ]
     }
   },
   "root": "root",
