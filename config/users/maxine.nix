@@ -46,6 +46,8 @@
 
       "<m-Up>"    = "<C-y>";
       "<m-Down>"  = "<C-e>";
+      "<m-Left>"  = ":bprevious<CR>";
+      "<m-Right>" = ":bnext<CR>";
 
       "<S-Up>"    = "Vk";
       "<S-Down>"  = "Vj";
@@ -59,6 +61,8 @@
 
       "<m-Up>"    = "<C-o><C-y>";
       "<m-Down>"  = "<C-o><C-e>";
+      "<m-Left>"  = "<C-o>:bprevious<CR>";
+      "<m-Right>" = "<C-o>:bnext<CR>";
 
       "<C-c>"    = "<Esc>";
       "<S-Tab>"  = "<Esc><<i";
