@@ -11,6 +11,7 @@
     python      = { url = ./python.nix;       flake = false; };
     rust        = { url = ./rust.nix;         flake = false; };
     typescript  = { url = ./typescript.nix;   flake = false; };
+    spyglass    = { url = ./spyglass.nix;     flake = false; };
   };
 
   outputs = { self, flake-parts, ... }@inputs:
@@ -24,13 +25,9 @@
             obsidian
             python
             rust
-            typescript;
-        };
-        type-path = lib.mkOptionType {
-          name = "path";
-          description = "a nix path object";
-          descriptionClass = "noun";
-          check = builtins.isPath;
+            typescript
+            spyglass
+            ;
         };
       in {
         options = let inherit (lib) mkOption types; in {

@@ -1,36 +1,29 @@
 {
   inputs = {
     flake-parts = {
-      url = /dev/null;
+      url = ./.;
       flake = false;
     };
 
-    maxine = { url = ./maxine.nix; flake = false; };
+    flake-module =  { url = ./flake-module.nix; flake = false; };
+
+    maxine =        { url = ./maxine.nix;       flake = false; };
   };
 
-  outputs = { self, flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } ({
-      flake.flakeModules.default = { config, lib, ... }:
-      let
-        inherit (lib) mkOption types;
+  outputs = { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        flake-parts.flakeModules.flakeModules
 
-        users = {
-          inherit (inputs)
-            maxine;
-        };
-      in {
-        options = {
-          nixvimUser = mkOption {
-            type =
-              types.nullOr (types.coercedTo
-                (types.enum (builtins.attrNames users))
-                (user: users.${user}.outPath)
-                types.pathInStore);
-            default = null;
-          };
-        };
+        inputs.flake-module.outPath
+      ];
 
-        config.nixvimProfiles = [ (lib.mkIf (config.nixvimUser != null) config.nixvimUser) ];
+      userDefinitions = {
+        inherit (inputs)
+          maxine
+          ;
       };
-    });
+
+      # flake.flakeModules.default = {};
+    };
 }

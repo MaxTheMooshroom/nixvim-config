@@ -1,13 +1,14 @@
 {
-  description = "Maxine's Neovim configuration flake";
+  description = "Maxine's Neovim configuration";
 
   inputs = {
+    # see .envrc file for more info on what this is
     devenv-root = {
       url = "file+file:///dev/null";
       flake = false;
     };
 
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "github:MaxTheMooshroom/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -15,11 +16,8 @@
 
     nixpkgs.follows = "nixvim/nixpkgs";
 
-    flake-module.url = ./flake-module.nix;
-    flake-module.flake = false;
-
-    partitions.url = ./partitions.nix;
-    partitions.flake = false;
+    flake-module  = { url = ./flake-module.nix;   flake = false; };
+    partitions    = { url = ./partitions.nix;     flake = false; };
 
     nixvim-modules.url = ./config;
     nixvim-modules.inputs.nixpkgs.follows = "nixpkgs";
@@ -34,28 +32,24 @@
   outputs = { self, flake-parts, nixvim-modules, nixvim, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
       let
-        importApply = inputs.nixpkgs.lib.flip flake-parts.lib.importApply {
-          inputs = { inherit nixvim-modules nixvim; };
-        };
+        inherit (inputs) nixpkgs flake-module partitions;
+        inherit (flake-parts) lib;
 
+        importApply = nixpkgs.lib.flip lib.importApply { inherit inputs; };
       in {
-        imports = [
-          (importApply inputs.flake-module)
+        imports = builtins.map importApply [ flake-module partitions ];
 
-          (importApply inputs.partitions)
-        ];
-
-        systems = inputs.nixpkgs.lib.systems.flakeExposed;
-        # systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
-
+        # todo: select multiple users and switch between user modes at runtime?
         nixvimUser = "maxine";
 
         nixvimEnvironments = [
-          "typescript"
-          "python"
           "rust"
+          # "java"
+          # "spyglass"
+          # "typescript"
+          # "python"
           "docker"
-          "godot"
+          # "godot"
         ];
       }
     );

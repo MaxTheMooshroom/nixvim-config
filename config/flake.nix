@@ -1,26 +1,15 @@
 {
   inputs = {
     flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      # url = /dev/null;
-      # flake = false;
+      url = /dev/null;
+      flake = false;
     };
 
-    # nixpkgs = {
-    #   url = "file+file:///dev/null";
-    #   flake = false;
-    # };
-
-    user-preferences.url = ./users;
-    user-preferences.inputs = {
-      flake-parts.follows = "flake-parts";
-    };
+    user-profiles.url = ./users;
+    user-profiles.inputs.flake-parts.follows = "flake-parts";
 
     environments.url = ./environments;
-    environments.inputs = {
-      flake-parts.follows = "flake-parts";
-      # nixpkgs.follows = "nixpkgs";
-    };
+    environments.inputs.flake-parts.follows = "flake-parts";
 
     default             = { url = ./default.nix;            flake = false; };
     colorscheme         = { url = ./colorscheme.nix;        flake = false; };
@@ -56,8 +45,6 @@
   outputs = { self, flake-parts, nixpkgs, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
       { config, ... }: {
-        flake.lib = {};
-
         flake.flakeModules.default =
           { config, pkgs, lib, ... }:
           let
@@ -65,17 +52,17 @@
           in {
             imports = with inputs; [
               environments.flakeModules.default
-              user-preferences.flakeModules.default
+              user-profiles.flakeModules.default
             ];
 
             options = {
               nixvimProfiles = mkOption {
-                type = types.listOf types.path;
-                # type =
-                #   types.coercedTo
-                #     (types.listOf types.path)
-                #     (builtins.map builtins.import)
-                #     (types.listOf types.deferredModule);
+                # type = types.listOf types.path;
+                type =
+                  types.coercedTo
+                    (types.listOf (types.nullOr types.unspecified))
+                    (builtins.filter (x: ! builtins.isNull x))
+                    (types.listOf types.deferredModule);
                 default = [];
               };
             };

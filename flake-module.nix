@@ -1,23 +1,19 @@
-# The importApply argument. Use this to reference things defined locally,
-# as opposed to the flake where this is imported.
 localFlake:
-
-# Regular module arguments; self, inputs, etc all reference the final user flake,
-# where this module was imported.
 { lib, config, self, inputs, ... }:
 let
   inherit (lib) mkOption types;
   inherit (inputs) nixvim nixvim-modules;
 
-  inherit (nixvim-modules.lib.types) foreignModule;
+  zipLists = f: a: b:
+    with builtins;
+    assert ((length a) == (length b));
+    genList (i: f (elemAt a i) (elemAt b i)) (length a);
 
-  foreignConfig = types.submodule {
-    options = {
-      system = mkOption { type = types.enum lib.systems.flakeExposed; };
+  doAssert = check: value: assert (check value); value;
 
-      modules = mkOption { type = types.listOf foreignModule; };
-    };
-  };
+  doAsserts = checks: value: builtins.map (c: doAssert c value) checks;
+
+  evalAsserts = checks: values: builtins.map (doAsserts checks) values;
 in {
   imports = [
     nixvim.flakeModules.default
@@ -26,16 +22,16 @@ in {
   ];
 
   options = {
-    # nixvimModules = mkOption {
-    #   type = types.attrsOf type-foreignModule;
-    # };
-    #
-    # nixvimConfigurations = mkOption {
-    #   type = types.attrsOf foreignConfig;
-    # };
+    __nixvimProfiles = mkOption {
+      type = types.listOf types.deferredModule;
+    };
+
+    nixvimConfigurations = mkOption {
+      type = types.attrsOf types.deferredModule;
+    };
   };
 
-  config.flake.lib.types = nixvim-modules.lib.types // { inherit foreignConfig; };
+  config.systems = lib.systems.flakeExposed;
 
   config.nixvim = {
     packages = {
@@ -49,22 +45,14 @@ in {
     };
   };
 
+  config.__nixvimProfiles = lib.mkForce config.nixvimProfiles;
+
   config.perSystem = { self', inputs', pkgs, lib, system, ... }: {
+
     nixvimConfigurations.default = nixvim.lib.evalNixvim {
       inherit system;
 
-      modules =
-        assert lib.assertMsg
-          (builtins.all
-            (item:
-              assert lib.assertMsg
-                ((builtins.isPath item) || lib.types.pathInStore.check item)
-                "item was ${builtins.typeOf item} instead of type path!";
-              true
-            )
-            config.nixvimProfiles)
-          "expected all nixvimProfiles to be path objects!";
-        config.nixvimProfiles;
+      modules = config.__nixvimProfiles;
     };
 
     packages.default = self'.packages.nvim;
