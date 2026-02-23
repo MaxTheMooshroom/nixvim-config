@@ -1,4 +1,6 @@
 {
+  config.plugins.treesitter-refactor.enable = false;
+
   config.plugins.treesitter = {
     enable = true;
     #folding = true;

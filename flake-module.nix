@@ -3,17 +3,6 @@ localFlake:
 let
   inherit (lib) mkOption types;
   inherit (inputs) nixvim nixvim-modules;
-
-  zipLists = f: a: b:
-    with builtins;
-    assert ((length a) == (length b));
-    genList (i: f (elemAt a i) (elemAt b i)) (length a);
-
-  doAssert = check: value: assert (check value); value;
-
-  doAsserts = checks: value: builtins.map (c: doAssert c value) checks;
-
-  evalAsserts = checks: values: builtins.map (doAsserts checks) values;
 in {
   imports = [
     nixvim.flakeModules.default

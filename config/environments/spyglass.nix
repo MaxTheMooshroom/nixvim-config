@@ -1,6 +1,6 @@
 { ... }: {
   config.plugins = {
-    lsp.servers.spyglass.enable = true;
+    # lsp.servers.spyglass.enable = true;
   };
 
   # config.

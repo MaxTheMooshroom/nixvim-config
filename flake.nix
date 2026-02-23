@@ -8,8 +8,9 @@
       flake = false;
     };
 
-    nixvim.url = "github:MaxTheMooshroom/nixvim";
+    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
     nixvim.inputs.flake-parts.follows = "flake-parts";
+    nixvim.inputs.nixpkgs.url = "github:NixOS/nixpkgs/25.11";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixvim/nixpkgs";
@@ -19,9 +20,11 @@
     flake-module  = { url = ./flake-module.nix;   flake = false; };
     partitions    = { url = ./partitions.nix;     flake = false; };
 
-    nixvim-modules.url = ./config;
-    nixvim-modules.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim-modules.inputs.flake-parts.follows = "flake-parts";
+    nixvim-modules = {
+      url = ./config;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   nixConfig = {
@@ -47,7 +50,7 @@
           # "java"
           # "spyglass"
           # "typescript"
-          # "python"
+          "python"
           "docker"
           # "godot"
         ];

@@ -11,6 +11,7 @@
     python      = { url = ./python.nix;       flake = false; };
     rust        = { url = ./rust.nix;         flake = false; };
     typescript  = { url = ./typescript.nix;   flake = false; };
+    java        = { url = ./java.nix;         flake = false; };
     spyglass    = { url = ./spyglass.nix;     flake = false; };
   };
 
@@ -26,6 +27,7 @@
             python
             rust
             typescript
+            java
             spyglass
             ;
         };
