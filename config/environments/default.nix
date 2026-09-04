@@ -3,24 +3,31 @@ let
   inherit (lib) mkOption types;
 
   swap = x: f: f x;
-  pipe' = lib.flip lib.pipe;
+  pipe = lib.flip lib.pipe;
+  toFunction = x: if !(lib.isFunction x) then lib.const x else x;
 
-  allPredicates = preds: item: builtins.all (swap item) preds;
+  all-environments =
+    {
+      cpp         = ./cpp.nix;
+      docker      = ./docker.nix;
+      godot       = ./godot.nix;
+      java        = ./java.nix;
+      obsidian    = ./obsidian.nix;
+      python      = ./python.nix;
+      rust        = ./rust.nix;
+      spyglass    = ./spyglass.nix;
+      typescript  = ./typescript.nix;
+    };
 
-  valid-environments =
-    let
-      environments' =
-        lib.filter
-          (
-            allPredicates
-              [
-                ({ value, ... }: value == "regular")
-                ({ name, ... }: lib.hasSuffix ".nix" name)
-              ]
-          )
-          (lib.attrsToList (builtins.readDir ./.));
-    in
-      builtins.map ({ name, ... }: lib.removeSuffix ".nix" name) environments';
+    importEnvironment =
+      with builtins;
+      pipe
+        [
+          (lib.flip getAttr all-environments)
+          import
+          toFunction
+          (swap { inherit inputs; })
+        ];
 in
 {
   imports = [ ];
@@ -28,17 +35,16 @@ in
   options = {
     nixvimEnvironments = mkOption {
       type =
+        with builtins;
         types.coercedTo
-          (types.listOf (types.enum valid-environments))
-          (pipe'
-            [
-              lib.unique
-              (builtins.map (x: ./. + "/${x}.nix"))
-              (builtins.map import)
-              (swap { inherit inputs; })
-            ]
+          (
+            types.listOf
+              (types.enum (attrNames all-environments))
           )
+          (map importEnvironment)
           (types.listOf types.deferredModule);
+
+      apply = lib.unique;
     };
   };
 
