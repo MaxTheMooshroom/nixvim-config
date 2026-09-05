@@ -10,6 +10,7 @@ let
     {
       cpp         = ./cpp.nix;
       docker      = ./docker.nix;
+      flutter     = ./flutter.nix;
       godot       = ./godot.nix;
       java        = ./java.nix;
       obsidian    = ./obsidian.nix;
