@@ -42,6 +42,7 @@
               "python"
               "docker"
               # "godot"
+              "flutter"
             ];
 
           perSystem =

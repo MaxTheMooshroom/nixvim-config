@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   inherit (lib) mkOption types;
 
@@ -20,6 +20,8 @@ in
             apply = builtins.filter notNull;
 
             default =
+              config.nixvimEnvironments
+            ++
               [
                 ./base.nix
                 ./unfree.nix
