@@ -1,6 +1,5 @@
 {
   config.plugins.lsp.enable = true;
-  config.plugins.lsp.servers.nil_ls.enable = true;
   # config.plugins.lsp.servers.nixd.enable = true;
   config.plugins.lsp.servers.markdown_oxide.enable = true;
 
